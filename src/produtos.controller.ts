@@ -23,24 +23,24 @@ export class ProdutosController {
   }
 
   @Get(':id')
-  obterUm(@Param() params): string {
-    return `Retorna os dados do produto ${params.id}`;
+  obterUm(@Param() params): Produto {
+    return this.produtos[0];
   }
 
   @Post()
-  criar(@Body() produto): string {
-    console.log(produto);
-    return 'Produto criado.';
+  criar(@Body() produto: Produto) {
+    produto.id = 100;
+    this.produtos.push(produto);
+    return produto;
   }
 
   @Put()
-  alterar(@Body() produto): string {
-    console.log(produto);
-    return 'Produto atualizado.';
+  alterar(@Body() produto: Produto): Produto {
+    return produto;
   }
 
   @Delete(':id')
-  apagar(@Param() params): string {
-    return `Produto deletado ${params.id}`;
+  apagar(@Param() params) {
+    this.produtos.pop();
   }
 }
